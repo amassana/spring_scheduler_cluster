@@ -16,9 +16,11 @@ public class ScheduledCurrentTimeTask {
   private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
   @Scheduled(fixedRate = 5000)
-  @SchedulerLock(name = "currentTimeTask", lockAtLeastFor = "5S", lockAtMostFor = "10M")
-  public void currentTimeTask() {
-    log.info("The time is now {}", dateFormat.format(new Date()));
+  @SchedulerLock(name = "currentTimeTask", lockAtLeastFor = "5S", lockAtMostFor = "1M")
+  public void currentTimeTask() throws InterruptedException {
+    log.info("The time is now {} START", dateFormat.format(new Date()));
+    Thread.sleep(10000);
+    log.info("The time is now {} END", dateFormat.format(new Date()));
   }
 
 }
