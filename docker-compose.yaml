@@ -1,12 +1,29 @@
-version: '3.0'
+version: '2.1'
 services:
-  postgresql:
-    image: sameersbn/postgresql:9.4
-    container_name: postgresql
-    environment:
-      - DEBUG=false
-      - DB_USER=shedlock_sample
-      - DB_PASS=Welcome123
-      - DB_NAME=shedlock
+  database:
+    image: postgres:latest
     ports:
       - "5432:5432"
+    environment:
+      POSTGRES_USER: "shedlock_sample"
+      POSTGRES_PASSWORD: "Welcome123"
+      POSTGRES_DB:       "shedlock"
+    networks:
+      backend:
+        aliases:
+          - "database"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  schedlock:
+    image: schedlock/schedlock:0.0.1-SNAPSHOT
+    networks:
+      backend:
+        aliases:
+          - "schedlock"
+
+networks:
+  backend:
+    driver: bridge
