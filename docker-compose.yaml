@@ -24,7 +24,11 @@ services:
       backend:
         aliases:
           - "schedlock"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/shedlock
+    deploy:
+      replicas: 3
 
 networks:
   backend:
-    driver: bridge
+    driver: overlay 
