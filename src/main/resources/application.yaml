@@ -15,6 +15,7 @@ application:
   sleepTime: 40000
   scheduled:
     fixedRate: 5000
+    fixedDelayString: 5000
   schedulerLock:
     lockAtMostFor: 30S
     lockAtLeastFor: 5S

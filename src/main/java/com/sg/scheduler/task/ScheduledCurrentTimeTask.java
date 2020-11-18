@@ -19,7 +19,7 @@ public class ScheduledCurrentTimeTask {
 
   private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-  @Scheduled(fixedRate = 5000)
+  @Scheduled(fixedDelayString = "${application.scheduled.fixedDelayString}")
   @SchedulerLock(name = "currentTimeTask",
           lockAtLeastFor = "${application.schedulerLock.lockAtLeastFor}",
           lockAtMostFor = "${application.schedulerLock.lockAtMostFor}")
