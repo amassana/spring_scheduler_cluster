@@ -10,3 +10,11 @@ spring:
         default_schema: public
   flyway:
     locations: classpath:db/migration
+
+application:
+  sleepTime: 40000
+  scheduled:
+    fixedRate: 5000
+  schedulerLock:
+    lockAtMostFor: 30S
+    lockAtLeastFor: 5S
