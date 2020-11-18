@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.2.2.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
+    id "com.palantir.docker" version "0.22.1"
 }
 
 group = 'com.example'
@@ -26,4 +27,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+docker {
+    name "${project.name}:${project.version}"
+    files 'sss.jar'
 }
